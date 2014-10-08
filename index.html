@@ -1,36 +1,29 @@
 <html>
   <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <title>Asteroids</title>
-    
-    <style type="text/css" media="screen">
-    html, body, canvas {
-      padding: 0px;
-      margin: 0px;
-    }
-    body { background-color: black;}
-    canvas { border: thin solid white;}
-    </style>
-    
-    <script src="lib/util.js"></script>
-    <script src="lib/movingObject.js"></script>
-    <script src="lib/asteroid.js"></script>
-    <script src="lib/bullet.js"></script>
-    <script src="lib/ship.js"></script>
-    <script src="lib/game.js"></script>
-    <script src="lib/gameView.js"></script>
-  
+    <script type="application/javascript" src="vendor/keymaster.js"></script>
+
+    <script type="application/javascript" src="lib/util.js"></script>
+    <script type="application/javascript" src="lib/movingObject.js"></script>
+    <script type="application/javascript" src="lib/asteroid.js"></script>
+    <script type="application/javascript" src="lib/ship.js"></script>
+    <script type="application/javascript" src="lib/bullet.js"></script>
+    <script type="application/javascript" src="lib/game.js"></script>
+    <script type="application/javascript" src="lib/gameView.js"></script>
   </head>
 
   <body>
+    <canvas></canvas>
 
-    <canvas id="game-canvas"></canvas>
-    <script>
-      var canvasEl = document.getElementById("game-canvas");
-      canvasEl.height = 750;
-      canvasEl.width = 750;
-      new Asteroids.GameView().start(canvasEl);
+    <script type="application/javascript">
+      (function () {
+        var canvasEl = document.getElementsByTagName("canvas")[0];
+        canvasEl.width = Asteroids.Game.DIM_X;
+        canvasEl.height = Asteroids.Game.DIM_Y;
+
+        var ctx = canvasEl.getContext("2d");
+        var game = new Asteroids.Game();
+        new Asteroids.GameView(game, ctx).start();
+      })();
     </script>
- 
   </body>
 </html>
